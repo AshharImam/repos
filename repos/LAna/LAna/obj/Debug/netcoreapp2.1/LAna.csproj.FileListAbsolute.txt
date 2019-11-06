@@ -1,0 +1,11 @@
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\bin\Debug\netcoreapp2.1\LAna.deps.json
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\bin\Debug\netcoreapp2.1\LAna.runtimeconfig.json
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\bin\Debug\netcoreapp2.1\LAna.runtimeconfig.dev.json
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\bin\Debug\netcoreapp2.1\LAna.dll
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\bin\Debug\netcoreapp2.1\LAna.pdb
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\obj\Debug\netcoreapp2.1\LAna.csprojAssemblyReference.cache
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\obj\Debug\netcoreapp2.1\LAna.csproj.CoreCompileInputs.cache
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\obj\Debug\netcoreapp2.1\LAna.AssemblyInfoInputs.cache
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\obj\Debug\netcoreapp2.1\LAna.AssemblyInfo.cs
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\obj\Debug\netcoreapp2.1\LAna.dll
+C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\obj\Debug\netcoreapp2.1\LAna.pdb
