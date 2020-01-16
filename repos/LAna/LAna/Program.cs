@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
+using LAna.Semantic_Solutuons;
 
 namespace LAna
 {
@@ -15,8 +16,14 @@ namespace LAna
         internal Regex regInt = new Regex(("^[+-]{0,1}[0-9]{1,20}$"));
         internal Regex regFloat = new Regex("^[+-]{0,1}[0-9]{0,20}(.)[0-9]{1,20}$");
         internal string[] keyWords = { "class", "void", "int", "float", "Main", "return", "while", "for", "this","if","else","char","bool","break","continue"
-                                        ,"array","string","base", "sealed", "virtual", "override", "inheritance", "public", "private", "protected", "new"};
-        internal List<string> Tokens = new List<string>();
+                                        ,"array","string","base", "sealed", "virtual", "override", "inheritance", "public", "private", "protected", "new","static"};
+        public List<string> Tokens = new List<string>();
+        public List<string> tokensPass = new List<string>();
+        public List<string> tokensPass2 = new List<string>();
+
+
+
+        //SemanticAnalyser sem =new SemanticAnalyser();// object created
         public bool _chk(string temp)
         {
             for (int z = 0; z < keyWords.Length; z++)
@@ -55,12 +62,16 @@ namespace LAna
                 return false;
             }
         }
-
+        public int count = 0;
         public void _write(string type, string word)
         {
             //Console.WriteLine(type + "  "+word);
             string listOBJ = (type +"  "+ word);
+            string listObj2 = word;
+            string listObj3 = type;
             Tokens.Add(listOBJ);
+            tokensPass.Add(listObj2);
+            tokensPass2.Add(listObj3);
         }
 
         public bool _chkInt(string temp)
@@ -95,8 +106,10 @@ namespace LAna
             {
                 text += item + Environment.NewLine;
             }
+            tokensGet.Func(tokensPass,tokensPass2);
             return text;
         }
+        
     }
     class Program
     {
@@ -109,10 +122,12 @@ namespace LAna
             //Console.WriteLine("start of program");
             while (ittr < text.Length)
             {
+                
                 if (text[ittr] == ' ')//space
                 {
                     if (word != null)
                     {
+                        //Console.WriteLine(word);
                         if (an._chk(word))
                         {
                             word = null;
@@ -171,28 +186,30 @@ namespace LAna
                             temp += text[ittr + 1];
                             ittr++;
                         }
-
-                        if (an._chkInt(temp))
+                        if (temp != null)
                         {
-                            an._write("parantheses", "(");
-                            an._write("integer constant ", temp);
-                            temp = null;
-                            ittr++;
+                            if (an._chkInt(temp))
+                            {
+                                an._write("parantheses", "(");
+                                an._write("integer constant ", temp);
+                                temp = null;
+                                ittr++;
+                            }
+                            else if (an._chkFloat(temp))
+                            {
+                                an._write("parantheses", "(");
+                                an._write("float constant ", temp);
+                                temp = null;
+                                ittr++;
+                            }
                         }
-                        else if (an._chkFloat(temp))
-                        {
-                            an._write("parantheses", "(");
-                            an._write("float constant ", temp);
-                            temp = null;
-                            ittr++;
-                        }
-                        else
-                        {
-                            ittr = j;
-                            an._write("parantheses", "(");
-                            temp = null;
-                            ittr++;
-                        }
+                            else
+                            {
+                                ittr = j;
+                                an._write("parantheses", "(");
+                                temp = null;
+                                ittr++;
+                            }
                     }
                     else
                     {
@@ -694,35 +711,45 @@ namespace LAna
                 }
                 else if (text[ittr] == '"')
                 {
+                    
                     if (word != null)
                     {
+                        //Console.WriteLine(word);
                         if (an._chk(word))
                         {
+                            //Console.WriteLine(word);
                             word = null;
                         }
                     }
                     word = null;
                     int m = ittr;
+                    ittr++;
+                    //Console.WriteLine(ittr);
                 dblQuot:
                     while (text[ittr] != '"' && text[ittr] != '\r')
                     {
+                        //Console.WriteLine("in while");
                         word += text[ittr];
                         ittr++;
                     }
+                    //Console.WriteLine(word);
                     if (text[ittr] == '\r')
                     {
                         an._write("invalid lexene", (text[m] + word).ToString());
+                        //Console.WriteLine("here in the line 0");
                         word = null;
                         lineNum++;
                     }
-                    if (text[ittr] == '"' && text[ittr - 1] != '\\')
+                    else if (text[ittr] == '"' && text[ittr - 1] != '\\')
                     {
-                        an._write("strin constant", word);
+                        an._write("string constant", word);
+                       // Console.WriteLine("Here in the line 1 "+word);
                         word = null;
                     }
                     else if (text[ittr] == '"' && text[ittr - 1] == '\\' && text[ittr - 2] != '\\')
                     {
                         an._write("string constant", word);
+                        //Console.WriteLine("Here in line 2");
                         word = null;
                         goto dblQuot;
                     }
@@ -731,7 +758,9 @@ namespace LAna
                         an._write("string constant", word);
                         word = null;
                     }
+                    //Console.WriteLine(ittr);
                     ittr++;
+                    //Console.WriteLine(ittr);
                 }
                 else if (text[ittr] == '\'')
                 {
@@ -796,6 +825,23 @@ namespace LAna
             string outText = an._writeFile();
             //Console.WriteLine(" here is the last line");
             File.WriteAllText(@"C:\Users\Syed Ashhar Imam\source\repos\LAna\LAna\outpu.txt", outText);
+            //foreach (string item in globalVar.lexTokens)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            syntaxAnalyser sem = new syntaxAnalyser();
+            if (sem.Start())
+            {
+                Console.WriteLine("parsed succ");
+            }
+            else
+            {
+                Console.WriteLine("parsed unn");
+            }
+            
+            Console.WriteLine(globalVar.ittr);
+            
         }
     }
+    
 }

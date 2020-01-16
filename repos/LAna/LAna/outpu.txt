@@ -1,47 +1,31 @@
-identifier  interface
-refrence operator  ::
-identifier  A_B_C
-Keyword  while
+Keyword  class
+identifier  A
+unknown  :
+identifier  B
+unknown  {
+unknown  }
+Keyword  class
+identifier  B
+unknown  {
+unknown  }
+Keyword  class
+identifier  C
+unknown  {
+Keyword  public
+Keyword  static
+Keyword  void
+identifier  main
 parantheses  (
-Relational Op  <
-Relational Op  <
-Relational Op  <
-Relational Op  <
-Relational Op  <
-Relational Op  <
-Relational Op  <=
-Relational Op  ==
-float constant  78.65
-identifier  b
-INC  ++
-PM  +
-assignment Op  =
-assignment Op  =
-strin constant  
-identifier  abc
-INC  ++
-assignment Op  =
-string constant  
-string constant  
-identifier  abc
-strin constant  
+unknown  )
+unknown  {
+Keyword  int
 identifier  a
 assignment Op  =
 identifier  b
-assignment Op  =
-identifier  c
+unknown  ;
 Keyword  string
-identifier  s
+identifier  c
 assignment Op  =
-invalid lexene  5
-char constant  +
-INC  ++
-invalid lexene  5
-PM  +
-assignment Op  =
-integer constant  35
-invalid lexene  5
-Keyword  return
-identifier  a
-Relational Op  &&
-Relational Op  ==
+string constant  Ashhar Imam
+unknown  }
+unknown  }
